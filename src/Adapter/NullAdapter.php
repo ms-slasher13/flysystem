@@ -14,11 +14,11 @@ class NullAdapter extends AbstractAdapter
     /**
      * Check whether a file is present.
      *
-     * @param string $path
+     * @param bool $path
      *
      * @return bool
      */
-    public function has($path)
+    public function has(bool $path)
     {
         return false;
     }
@@ -26,7 +26,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function write($path, $contents, Config $config)
+    public function write(string $path, string $contents, Config $config): array
     {
         $type = 'file';
         $result = compact('contents', 'type', 'path');
@@ -41,7 +41,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function update($path, $contents, Config $config)
+    public function update(string $path, string $contents, Config $config): array
     {
         return false;
     }
@@ -49,7 +49,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function read($path)
+    public function read(string $path): array
     {
         return false;
     }
@@ -57,7 +57,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function rename($path, $newpath)
+    public function rename(string $path, string $newpath): bool
     {
         return false;
     }
@@ -65,7 +65,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function delete($path)
+    public function delete(string $path): bool
     {
         return false;
     }
@@ -73,7 +73,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function listContents($directory = '', $recursive = false)
+    public function listContents(string $directory = '', bool $recursive = false): array
     {
         return [];
     }
@@ -81,7 +81,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getMetadata($path)
+    public function getMetadata(string $path): array
     {
         return false;
     }
@@ -89,7 +89,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getSize($path)
+    public function getSize(string $path): array
     {
         return false;
     }
@@ -97,7 +97,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getMimetype($path)
+    public function getMimetype(string $path): array
     {
         return false;
     }
@@ -105,7 +105,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getTimestamp($path)
+    public function getTimestamp(string $path): array
     {
         return false;
     }
@@ -113,7 +113,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getVisibility($path)
+    public function getVisibility(string $path): array
     {
         return false;
     }
@@ -121,7 +121,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function setVisibility($path, $visibility)
+    public function setVisibility(string $path, string $visibility): array
     {
         return compact('visibility');
     }
@@ -129,7 +129,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function createDir($dirname, Config $config)
+    public function createDir(string $dirname, Config $config): array
     {
         return ['path' => $dirname, 'type' => 'dir'];
     }
@@ -137,7 +137,7 @@ class NullAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function deleteDir($dirname)
+    public function deleteDir(string $dirname): bool
     {
         return false;
     }

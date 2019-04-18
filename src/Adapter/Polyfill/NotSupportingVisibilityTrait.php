@@ -11,9 +11,10 @@ trait NotSupportingVisibilityTrait
      *
      * @param string $path
      *
+     * @return array
      * @throws LogicException
      */
-    public function getVisibility($path)
+    public function getVisibility(string $path): array
     {
         throw new LogicException(get_class($this) . ' does not support visibility. Path: ' . $path);
     }
@@ -26,7 +27,7 @@ trait NotSupportingVisibilityTrait
      *
      * @throws LogicException
      */
-    public function setVisibility($path, $visibility)
+    public function setVisibility(string $path, string $visibility): array
     {
         throw new LogicException(get_class($this) . ' does not support visibility. Path: ' . $path . ', visibility: ' . $visibility);
     }

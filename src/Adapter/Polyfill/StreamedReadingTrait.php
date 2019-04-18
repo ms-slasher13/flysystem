@@ -14,9 +14,9 @@ trait StreamedReadingTrait
      *
      * @return array|false
      *
-     * @see League\Flysystem\ReadInterface::readStream()
+     * @see \League\Flysystem\AdapterInterface::readStream
      */
-    public function readStream($path)
+    public function readStream(string $path): array
     {
         if ( ! $data = $this->read($path)) {
             return false;
@@ -38,7 +38,7 @@ trait StreamedReadingTrait
      *
      * @return array|false
      *
-     * @see League\Flysystem\ReadInterface::read()
+     * @see \League\Flysystem\AdapterInterface::read
      */
-    abstract public function read($path);
+    abstract public function read(string $path): array;
 }

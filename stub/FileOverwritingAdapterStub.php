@@ -14,7 +14,7 @@ class FileOverwritingAdapterStub implements AdapterInterface, CanOverwriteFiles
     public $writtenPath = '';
     public $writtenContents = '';
 
-    public function write($path, $contents, Config $config)
+    public function write(string $path, string $contents, Config $config): array
     {
         $this->writtenPath = $path;
         $this->writtenContents = $contents;
@@ -22,7 +22,7 @@ class FileOverwritingAdapterStub implements AdapterInterface, CanOverwriteFiles
         return true;
     }
 
-    public function writeStream($path, $resource, Config $config)
+    public function writeStream(string $path, $resource, Config $config): array
     {
         $this->writtenPath = $path;
         $this->writtenContents = stream_get_contents($resource);
@@ -30,87 +30,87 @@ class FileOverwritingAdapterStub implements AdapterInterface, CanOverwriteFiles
         return true;
     }
 
-    public function update($path, $contents, Config $config)
+    public function update(string $path, string $contents, Config $config): array
     {
 
     }
 
-    public function updateStream($path, $resource, Config $config)
+    public function updateStream(string $path, $resource, Config $config): array
     {
 
     }
 
-    public function rename($path, $newpath)
+    public function rename(string $path, string $newpath): bool
     {
 
     }
 
-    public function copy($path, $newpath)
+    public function copy(string $path, string $newpath): bool
     {
 
     }
 
-    public function delete($path)
+    public function delete(string $path): bool
     {
 
     }
 
-    public function deleteDir($dirname)
+    public function deleteDir(string $dirname): bool
     {
 
     }
 
-    public function createDir($dirname, Config $config)
+    public function createDir(string $dirname, Config $config): array
     {
 
     }
 
-    public function setVisibility($path, $visibility)
+    public function setVisibility(string $path, string $visibility): array
     {
 
     }
 
-    public function has($path)
+    public function has(bool $path)
     {
 
     }
 
-    public function read($path)
+    public function read(string $path): array
     {
 
     }
 
-    public function readStream($path)
+    public function readStream(string $path): array
     {
 
     }
 
-    public function listContents($directory = '', $recursive = false)
+    public function listContents(string $directory = '', bool $recursive = false): array
     {
 
     }
 
-    public function getMetadata($path)
+    public function getMetadata(string $path): array
     {
 
     }
 
-    public function getSize($path)
+    public function getSize(string $path): array
     {
 
     }
 
-    public function getMimetype($path)
+    public function getMimetype(string $path): array
     {
 
     }
 
-    public function getTimestamp($path)
+    public function getTimestamp(string $path): array
     {
 
     }
 
-    public function getVisibility($path)
+    public function getVisibility(string $path): array
     {
 
     }

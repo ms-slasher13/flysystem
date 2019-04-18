@@ -17,29 +17,29 @@ interface AdapterInterface
     /**
      * Check whether a file exists.
      *
-     * @param string $path
+     * @param bool $path
      *
      * @return array|bool|null
      */
-    public function has($path);
+    public function has(bool $path);
 
     /**
      * Read a file.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function read($path);
+    public function read(string $path): array;
 
     /**
      * Read a file as a stream.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function readStream($path);
+    public function readStream(string $path): array;
 
     /**
      * List contents of a directory.
@@ -49,96 +49,96 @@ interface AdapterInterface
      *
      * @return array
      */
-    public function listContents($directory = '', $recursive = false);
+    public function listContents(string $directory = '', bool $recursive = false): array;
 
     /**
      * Get all the meta data of a file or directory.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function getMetadata($path);
+    public function getMetadata(string $path): array;
 
     /**
      * Get the size of a file.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function getSize($path);
+    public function getSize(string $path): array;
 
     /**
      * Get the mimetype of a file.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function getMimetype($path);
+    public function getMimetype(string $path): array;
 
     /**
      * Get the last modified time of a file as a timestamp.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function getTimestamp($path);
+    public function getTimestamp(string $path): array;
 
     /**
      * Get the visibility of a file.
      *
      * @param string $path
      *
-     * @return array|false
+     * @return array
      */
-    public function getVisibility($path);
+    public function getVisibility(string $path): array;
 
     /**
      * Write a new file.
      *
      * @param string $path
      * @param string $contents
-     * @param Config $config   Config object
+     * @param Config $config Config object
      *
-     * @return array|false false on failure file meta data on success
+     * @return array file meta data
      */
-    public function write($path, $contents, Config $config);
+    public function write(string $path, string $contents, Config $config): array;
 
     /**
      * Write a new file using a stream.
      *
      * @param string   $path
      * @param resource $resource
-     * @param Config   $config   Config object
+     * @param Config   $config Config object
      *
-     * @return array|false false on failure file meta data on success
+     * @return array   file meta data
      */
-    public function writeStream($path, $resource, Config $config);
+    public function writeStream(string $path, $resource, Config $config): array;
 
     /**
      * Update a file.
      *
      * @param string $path
      * @param string $contents
-     * @param Config $config   Config object
+     * @param Config $config Config object
      *
-     * @return array|false false on failure file meta data on success
+     * @return array file meta data
      */
-    public function update($path, $contents, Config $config);
+    public function update(string $path, string $contents, Config $config): array;
 
     /**
      * Update a file using a stream.
      *
      * @param string   $path
      * @param resource $resource
-     * @param Config   $config   Config object
+     * @param Config   $config Config object
      *
-     * @return array|false false on failure file meta data on success
+     * @return array file meta data
      */
-    public function updateStream($path, $resource, Config $config);
+    public function updateStream(string $path, $resource, Config $config): array;
 
     /**
      * Rename a file.
@@ -148,7 +148,7 @@ interface AdapterInterface
      *
      * @return bool
      */
-    public function rename($path, $newpath);
+    public function rename(string $path, string $newpath): bool;
 
     /**
      * Copy a file.
@@ -158,7 +158,7 @@ interface AdapterInterface
      *
      * @return bool
      */
-    public function copy($path, $newpath);
+    public function copy(string $path, string $newpath): bool;
 
     /**
      * Delete a file.
@@ -167,7 +167,7 @@ interface AdapterInterface
      *
      * @return bool
      */
-    public function delete($path);
+    public function delete(string $path): bool;
 
     /**
      * Delete a directory.
@@ -176,7 +176,7 @@ interface AdapterInterface
      *
      * @return bool
      */
-    public function deleteDir($dirname);
+    public function deleteDir(string $dirname): bool;
 
     /**
      * Create a directory.
@@ -184,9 +184,9 @@ interface AdapterInterface
      * @param string $dirname directory name
      * @param Config $config
      *
-     * @return array|false
+     * @return array
      */
-    public function createDir($dirname, Config $config);
+    public function createDir(string $dirname, Config $config): array;
 
     /**
      * Set the visibility for a file.
@@ -194,7 +194,7 @@ interface AdapterInterface
      * @param string $path
      * @param string $visibility
      *
-     * @return array|false file meta data
+     * @return array file meta data
      */
-    public function setVisibility($path, $visibility);
+    public function setVisibility(string $path, string $visibility): array;
 }

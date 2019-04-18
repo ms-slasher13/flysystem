@@ -236,7 +236,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function write($path, $contents, Config $config)
+    public function write(string $path, string $contents, Config $config): array
     {
         $stream = fopen('php://temp', 'w+b');
         fwrite($stream, $contents);
@@ -257,7 +257,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function writeStream($path, $resource, Config $config)
+    public function writeStream(string $path, $resource, Config $config): array
     {
         $this->ensureDirectory(Util::dirname($path));
 
@@ -277,7 +277,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function update($path, $contents, Config $config)
+    public function update(string $path, string $contents, Config $config): array
     {
         return $this->write($path, $contents, $config);
     }
@@ -285,7 +285,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function updateStream($path, $resource, Config $config)
+    public function updateStream(string $path, $resource, Config $config): array
     {
         return $this->writeStream($path, $resource, $config);
     }
@@ -293,7 +293,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function rename($path, $newpath)
+    public function rename(string $path, string $newpath): bool
     {
         return ftp_rename($this->getConnection(), $path, $newpath);
     }
@@ -301,7 +301,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function delete($path)
+    public function delete(string $path): bool
     {
         return ftp_delete($this->getConnection(), $path);
     }
@@ -309,7 +309,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function deleteDir($dirname)
+    public function deleteDir(string $dirname): bool
     {
         $connection = $this->getConnection();
         $contents = array_reverse($this->listDirectoryContents($dirname, false));
@@ -330,7 +330,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function createDir($dirname, Config $config)
+    public function createDir(string $dirname, Config $config): array
     {
         $connection = $this->getConnection();
         $directories = explode('/', $dirname);
@@ -379,7 +379,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function getMetadata($path)
+    public function getMetadata(string $path): array
     {
         if ($path === '') {
             return ['type' => 'dir', 'path' => ''];
@@ -411,7 +411,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function getMimetype($path)
+    public function getMimetype(string $path): array
     {
         if ( ! $metadata = $this->getMetadata($path)) {
             return false;
@@ -425,7 +425,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function getTimestamp($path)
+    public function getTimestamp(string $path): array
     {
         $timestamp = ftp_mdtm($this->getConnection(), $path);
 
@@ -435,7 +435,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function read($path)
+    public function read(string $path): array
     {
         if ( ! $object = $this->readStream($path)) {
             return false;
@@ -451,7 +451,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function readStream($path)
+    public function readStream(string $path): array
     {
         $stream = fopen('php://temp', 'w+b');
         $result = ftp_fget($this->getConnection(), $stream, $path, $this->transferMode);
@@ -469,7 +469,7 @@ class Ftp extends AbstractFtpAdapter
     /**
      * @inheritdoc
      */
-    public function setVisibility($path, $visibility)
+    public function setVisibility(string $path, string $visibility): array
     {
         $mode = $visibility === AdapterInterface::VISIBILITY_PUBLIC ? $this->getPermPublic() : $this->getPermPrivate();
 

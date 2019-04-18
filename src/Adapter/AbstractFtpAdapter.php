@@ -331,7 +331,7 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function listContents($directory = '', $recursive = false)
+    public function listContents(string $directory = '', bool $recursive = false): array
     {
         return $this->listDirectoryContents($directory, $recursive);
     }
@@ -590,7 +590,7 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function has($path)
+    public function has(bool $path)
     {
         return $this->getMetadata($path);
     }
@@ -598,7 +598,7 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getSize($path)
+    public function getSize(string $path): array
     {
         return $this->getMetadata($path);
     }
@@ -606,7 +606,7 @@ abstract class AbstractFtpAdapter extends AbstractAdapter
     /**
      * @inheritdoc
      */
-    public function getVisibility($path)
+    public function getVisibility(string $path): array
     {
         return $this->getMetadata($path);
     }
