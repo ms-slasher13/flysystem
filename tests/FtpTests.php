@@ -363,8 +363,6 @@ function ftp_set_option($connection, $option, $value)
 
 class FtpTests extends TestCase
 {
-    use \PHPUnitHacks;
-
     protected $options = [
         'host' => 'example.org',
         'port' => 40,

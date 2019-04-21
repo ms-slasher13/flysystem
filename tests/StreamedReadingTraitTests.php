@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class StreamedReadingTraitTests extends TestCase
 {
-    use \PHPUnitHacks;
-
     public function testStreamRead()
     {
         $stub = new StreamedReadingStub();

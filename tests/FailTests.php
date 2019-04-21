@@ -27,8 +27,6 @@ namespace League\Flysystem
 
     class FailTests extends TestCase
     {
-        use \PHPUnitHacks;
-
         public function testFails()
         {
             $adapter = new Adapter\Local(__DIR__ . '/files');

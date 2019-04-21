@@ -19,6 +19,15 @@ abstract class FtpIntegrationTestCase extends TestCase
     {
         if ( ! defined('FTP_BINARY')) {
             $this->markTestSkipped('The FTP_BINARY constant is not defined');
+            return;
+        }
+
+        $ftpHandle = @ftp_connect('localhost', 21, 1);
+
+        if ($ftpHandle === false) {
+            $this->markTestSkipped('No FTP server running');
+        } else {
+            ftp_close($ftpHandle);
         }
     }
 

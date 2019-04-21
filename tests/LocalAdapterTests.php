@@ -5,6 +5,8 @@ namespace League\Flysystem\Adapter;
 use League\Flysystem\Config;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem;
+use League\Flysystem\NotSupportedException;
+use League\Flysystem\UnreadableFileException;
 use PHPUnit\Framework\TestCase;
 
 function fopen($result, $mode)
@@ -52,8 +54,6 @@ function mkdir($pathname, $mode = 0777, $recursive = false, $context = null)
 
 class LocalAdapterTests extends TestCase
 {
-    use \PHPUnitHacks;
-
     /**
      * @var Local
      */
@@ -396,11 +396,9 @@ class LocalAdapterTests extends TestCase
         unlink($link);
     }
 
-    /**
-     * @expectedException \League\Flysystem\NotSupportedException
-     */
     public function testLinkCausedUnsupportedException()
     {
+        $this->expectException(NotSupportedException::class);
         $root = __DIR__ . '/files/';
         $original = $root . 'original.txt';
         $link = $root . 'link.txt';
@@ -439,7 +437,7 @@ class LocalAdapterTests extends TestCase
 
     public function testUnreadableFilesCauseAnError()
     {
-        $this->expectException('League\Flysystem\UnreadableFileException');
+        $this->expectException(UnreadableFileException::class);
 
         $adapter = new Local(__DIR__ . '/files/', LOCK_EX, Local::SKIP_LINKS);
         $reflection = new \ReflectionClass($adapter);
